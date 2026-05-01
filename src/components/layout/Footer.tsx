@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import { Heart, Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export const Footer = () => (
   <footer className="border-t border-border bg-secondary/30 mt-20">
     <div className="container py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
       <div>
         <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg">
-          <span className="grid h-9 w-9 place-items-center rounded-xl gradient-primary text-primary-foreground">
-            <Heart className="h-5 w-5" fill="currentColor" />
-          </span>
+          <img src="/photo/founder.png" alt="Founder" className="h-9 w-9 rounded-full object-cover" />
           <span>IJS Healthcare</span>
         </Link>
         <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
@@ -52,7 +50,7 @@ export const Footer = () => (
     <div className="border-t border-border">
       <div className="container py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} IJS Healthcare Institute. All rights reserved.</p>
-        <p>Designed with care for every patient.</p>
+        <p>Made by Sarowar.</p>
       </div>
     </div>
   </footer>
