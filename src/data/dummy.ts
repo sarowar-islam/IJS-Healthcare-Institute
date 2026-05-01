@@ -99,7 +99,24 @@ export interface Testimonial {
   quote: string;
 }
 
-const img = (seed: string) => `https://i.pravatar.cc/400?u=${seed}`;
+const doctorPhotos = [
+  "https://images.pexels.com/photos/19438563/pexels-photo-19438563.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/19438560/pexels-photo-19438560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/19438558/pexels-photo-19438558.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/5722157/pexels-photo-5722157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/4989136/pexels-photo-4989136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/19438557/pexels-photo-19438557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/6762862/pexels-photo-6762862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/6762876/pexels-photo-6762876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/19438565/pexels-photo-19438565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/6762869/pexels-photo-6762869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/19438566/pexels-photo-19438566.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/4989135/pexels-photo-4989135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+];
+
+const doctorPhoto = (index: number) => doctorPhotos[index % doctorPhotos.length];
+
+const img = () => doctorPhotos[0];
 const branchImg = (id: number) => `https://images.unsplash.com/photo-${id}?w=800&q=80&auto=format&fit=crop`;
 
 export const branches: Branch[] = [
@@ -108,10 +125,7 @@ export const branches: Branch[] = [
   { id: "b3", city: "Sylhet", name: "IJS Sylhet Care", address: "8 Zindabazar, Sylhet 3100", phone: "+880 1700-100003", email: "sylhet@ijshealth.com", beds: 160, doctors: 38, image: "1551076805-e1869033e561" },
   { id: "b4", city: "Khulna", name: "IJS Khulna Specialty", address: "21 Khan Jahan Ali Rd, Khulna 9100", phone: "+880 1700-100004", email: "khulna@ijshealth.com", beds: 140, doctors: 30, image: "1519494026892-80bbd2d6fd0d" },
   { id: "b5", city: "Rajshahi", name: "IJS Rajshahi Wellness", address: "5 Saheb Bazar, Rajshahi 6000", phone: "+880 1700-100005", email: "rajshahi@ijshealth.com", beds: 110, doctors: 24, image: "1504439468489-c8920d796a29" },
-].map(b => ({ ...b, image: branchImg(parseInt(b.image.split('-')[0])) || `https://picsum.photos/seed/${b.id}/800/500` }));
-
-// Fallback to picsum so images always load
-branches.forEach((b, i) => { b.image = `https://picsum.photos/seed/branch${i}/900/600`; });
+].map(b => ({ ...b, image: branchImg(parseInt(b.image.split('-')[0])) }));
 
 export const departments: Department[] = [
   { id: "d1", name: "Cardiology", icon: "Heart", description: "Comprehensive heart care including diagnostics, surgery and rehabilitation.", doctorCount: 18 },
@@ -157,7 +171,7 @@ export const doctors: Doctor[] = docNames.map((name, i) => {
     available: i % 4 !== 0,
     bio: `${name} is a highly experienced ${spec.toLowerCase()} specialist with a patient-first approach. Recognized for clinical excellence and compassionate care across thousands of successful treatments.`,
     languages: ["English", "Bangla", i % 2 ? "Hindi" : "Urdu"],
-    image: img(`doctor-${i}`),
+    image: doctorPhoto(i),
     schedule: defaultSchedule,
   };
 });
@@ -171,7 +185,7 @@ export const currentPatient: Patient = {
   gender: "Female",
   bloodGroup: "B+",
   address: "House 22, Road 7, Dhanmondi, Dhaka",
-  avatar: img("ayesha"),
+  avatar: img(),
 };
 
 export const initialAppointments: Appointment[] = [
@@ -207,9 +221,9 @@ export const initialReports: MedicalReport[] = [
 ];
 
 export const testimonials: Testimonial[] = [
-  { id: "t1", name: "Rafiul Karim", role: "Patient, Dhaka", avatar: img("rafiul"), rating: 5, quote: "The booking flow was effortless and the cardiologist was outstanding. IJS truly puts patients first." },
-  { id: "t2", name: "Tahsin Chowdhury", role: "Parent, Chittagong", avatar: img("tahsin"), rating: 5, quote: "Brought my daughter for a pediatric consult — kind, fast, and thorough. Best hospital experience we've had." },
-  { id: "t3", name: "Nadia Islam", role: "Patient, Sylhet", avatar: img("nadia"), rating: 5, quote: "From digital records to follow-up reminders, IJS feels like healthcare from the future." },
+  { id: "t1", name: "Rafiul Karim", role: "Patient, Dhaka", avatar: img(), rating: 5, quote: "The booking flow was effortless and the cardiologist was outstanding. IJS truly puts patients first." },
+  { id: "t2", name: "Tahsin Chowdhury", role: "Parent, Chittagong", avatar: img(), rating: 5, quote: "Brought my daughter for a pediatric consult — kind, fast, and thorough. Best hospital experience we've had." },
+  { id: "t3", name: "Nadia Islam", role: "Patient, Sylhet", avatar: img(), rating: 5, quote: "From digital records to follow-up reminders, IJS feels like healthcare from the future." },
 ];
 
 export const stats = [
